@@ -1,0 +1,12 @@
+pylatex
+pandas
+numpy
+pypdf==4.3.1
+ipykernel
+google-generativeai
+matplotlib
+tqdm
+ipywidgets
+plotly
+scikit-learn
+pdflatex
