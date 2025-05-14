@@ -1,5 +1,3 @@
-# main.py
-
 from pylatex import Document, Command, NoEscape, Package
 from utils.build import generate_pdf
 from parts.cover import add_cover
@@ -18,7 +16,8 @@ doc.packages.append(Package('booktabs'))
 doc.packages.append(Package('float'))
 doc.packages.append(Package('graphicx'))
 doc.packages.append(Package('pgfgantt'))
-
+doc.packages.append(Package('fancyhdr'))
+doc.packages.append(NoEscape(r'\usepackage[hidelinks]{hyperref}'))
 
 # Change the summary name
 doc.preamble.append(NoEscape(r'\renewcommand{\contentsname}{Summary}'))
@@ -30,12 +29,11 @@ add_cover(doc)
 doc.append(NoEscape(r'\newgeometry{top=3.5cm, bottom=2cm, left=2cm, right=2cm}'))
 
 # Change header
-doc.preamble.append(Command('usepackage', 'fancyhdr'))
 doc.preamble.append(NoEscape(r'\pagestyle{fancy}'))
 doc.preamble.append(NoEscape(r'\setlength{\headwidth}{510pt}'))
-doc.preamble.append(NoEscape(r'\fancyhead[L]{\includegraphics[width=2cm]{frigel-logo.png}}'))  # canto esquerdo
-doc.preamble.append(NoEscape(r'\fancyhead[C]{\textbf{Project Proposal}}'))         # centro
-doc.preamble.append(NoEscape(r'\fancyhead[R]{\includegraphics[width=1cm]{unifi-logo.png}}'))  # canto direito
+doc.preamble.append(NoEscape(r'\fancyhead[L]{\includegraphics[width=2cm]{frigel-logo.png}}'))  # Left side
+doc.preamble.append(NoEscape(r'\fancyhead[C]{\textbf{Project Proposal}}'))         # Center
+doc.preamble.append(NoEscape(r'\fancyhead[R]{\includegraphics[width=1cm]{unifi-logo.png}}'))  # Right Side
 doc.append(NoEscape(r'\onehalfspacing'))
 doc.append(NoEscape(r'\setlength{\parindent}{12pt}'))
 doc.preamble.append(NoEscape(r'\setlength{\headheight}{2cm}'))
@@ -60,4 +58,4 @@ doc.append(Command('newpage'))
 add_conclusion(doc)
 
 # Generate PDF
-generate_pdf(doc, 'Results/documento_com_capa', clean_tex=False)
+generate_pdf(doc, 'Results/Project-Frigel', clean_tex=False)
